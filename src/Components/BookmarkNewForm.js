@@ -1,11 +1,18 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
 
 function BookmarkNewForm() {
   let navigate = useNavigate();
+
+  const [bookmark, setBookmark] = useState({
+    name: "",
+    url: "",
+    category: "",
+    is_favorite: false,
+  });
 
   const addBookmark = (newBookmark) => {
     axios
@@ -16,18 +23,7 @@ function BookmarkNewForm() {
         },
         (error) => console.error(error)
       )
-      .catch((c) => console.warn('catch', c));
-  };
-
-  const [bookmark, setBookmark] = useState({
-    name: '',
-    url: '',
-    category: '',
-    is_favorite: false
-  });
-
-  const handleTextChange = (event) => {
-    setBookmark({ ...bookmark, [event.target.id]: event.target.value });
+      .catch((c) => console.warn("catch", c));
   };
 
   const handleCheckboxChange = () => {
@@ -38,6 +34,11 @@ function BookmarkNewForm() {
     event.preventDefault();
     addBookmark(bookmark);
   };
+
+  const handleTextChange = (event) => {
+    setBookmark({ ...bookmark, [event.target.id]: event.target.value });
+  };
+
   return (
     <div className="New">
       <form onSubmit={handleSubmit}>
