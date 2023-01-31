@@ -16,7 +16,7 @@ function Bookmarks() {
 
   return (
     <div className="Bookmarks">
-      {console.log("I render first")}
+      {/* {console.log("I render first")} */}
       <section>
         <table>
           <thead>
